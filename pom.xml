@@ -35,8 +35,8 @@
 	<distributionManagement>
 		<repository>
 			<id>central</id>
-			<name>morrigandev-artifactory-primary-0-releases</name>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-release</url>
+			<name>stream-github-actions</name>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
 		</repository>
 	</distributionManagement>
 
