@@ -290,7 +290,7 @@
 							<configuration>
 								<publisher>
 									<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
-									<username>stream-github-actions</username>
+									<username>${env.ARTIFACTORY_USERNAME</username>
 									<password>${env.ARTIFACTORY_TOKEN}</password>
 									<repoKey>libs-release-local</repoKey>
 									<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
