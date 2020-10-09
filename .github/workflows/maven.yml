@@ -62,8 +62,9 @@ jobs:
           ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
           BUILD_ENV: 'github-actions'
         run: |
-          mvn -N io.takari:maven:wrapper
-          ./mvnw --batch-mode release:prepare
+           mvn --batch-mode release:prepare
+#          mvn -N io.takari:maven:wrapper
+#          ./mvnw --batch-mode release:prepare
       - name: Push the release
         env:
           SCM_USERNAME_REF: 'github-actions'
@@ -72,7 +73,7 @@ jobs:
           ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
           ARTIFACTORY_TOKEN:  ${{ secrets.ARTIFACTORY_TOKEN }}
           BUILD_ENV: 'github-actions'
-        run: ./mvnw --batch-mode release:perform
+        run: mvn --batch-mode release:perform
       - name: Rollback if failure
         if: ${{ failure() }}
-        run: ./mvnw --batch-mode release:rollback
+        run: mvn --batch-mode release:rollback
