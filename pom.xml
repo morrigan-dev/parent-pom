@@ -6,9 +6,25 @@
 
 	<groupId>de.morrigan.dev.common</groupId>
 	<artifactId>parent-pom</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
+
+	<name>Parent-POM</name>
 	<description>Enthält globale maven Konfigurationen, die für alle Projekte gelten.</description>
+
+	<developers>
+		<developer>
+			<id>morrigan-dev</id>
+			<name>Morrigan</name>
+			<email>morrigan.dev@gmail.com</email>
+			<roles>
+				<role>Architect</role>
+				<role>Developer</role>
+				<role>Tester</role>
+			</roles>
+			<timezone>GMT+1</timezone>
+		</developer>
+	</developers>
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git/</developerConnection>
@@ -25,6 +41,8 @@
 		<project.scm.id>github</project.scm.id>
 
 		<!-- Variablen für Plugin-Versionen -->
+		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
+		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
 		<maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version> <!-- Apache License -->
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version> <!-- Apache License -->
 		<maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version> <!-- Apache License -->
@@ -33,6 +51,7 @@
 		<maven-ejb-plugin.version>2.5.1</maven-ejb-plugin.version> <!-- Apache License -->
 		<maven-jar-plugin.version>2.6</maven-jar-plugin.version> <!-- Apache License -->
 		<maven-javadoc-plugin.version>2.10.3</maven-javadoc-plugin.version> <!-- Apache License -->
+		<maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version> <!-- Apache License -->
 		<maven-surefire-plugin.version>2.13</maven-surefire-plugin.version> <!-- Apache License -->
 		<maven-war-plugin.version>2.6</maven-war-plugin.version> <!-- Apache License -->
 
@@ -71,69 +90,110 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Logging Frameworks -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-api</artifactId>
+				<version>${log4j-api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>${log4j-core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>${log4j-slf4j-impl.version}</version>
+			</dependency>
+
+			<!-- Diverse Apache Bibliotheken -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
+			</dependency>
+
+			<!-- Diverse Test Bibliotheken -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hamcrest</groupId>
+						<artifactId>hamcrest-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-all</artifactId>
+				<version>${hamcrest-all.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.exparity</groupId>
+				<artifactId>hamcrest-date</artifactId>
+				<version>${hamcrest-date.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hamcrest</groupId>
+						<artifactId>hamcrest-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<!-- Libs, die so allgemein sind, dass (fast) alle Projekte sie benutzen -->
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>${log4j-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>${log4j-core.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>${log4j-slf4j-impl.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>${commons-lang3.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-all</artifactId>
-			<version>${hamcrest-all.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.exparity</groupId>
 			<artifactId>hamcrest-date</artifactId>
-			<version>${hamcrest-date.version}</version>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.hamcrest</groupId>
-					<artifactId>hamcrest-core</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
 	<build>
-
+		<!-- Einstellung für die Standard Maven Sources Strukturen -->
 		<resources>
 			<resource>
 				<directory>src/main/java</directory>
@@ -148,6 +208,7 @@
 				<directory>src/main/resources</directory>
 			</resource>
 		</resources>
+		<!-- Einstellung für die Standard Maven Test-Sources Strukturen -->
 		<testResources>
 			<testResource>
 				<directory>src/test/java</directory>
@@ -165,13 +226,12 @@
 
 		<pluginManagement>
 			<plugins>
-
 				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
+					<version>${lifecycle-mapping.version}</version>
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
@@ -196,116 +256,128 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-eclipse-plugin</artifactId>
 					<version>${maven-eclipse-plugin.version}</version>
 				</plugin>
 
+				<!-- Ermöglicht die Erstellung von Releases -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>${maven-release-plugin.version}</version>
+					<configuration>
+						<tagNameFormat>v@{project.version}</tagNameFormat>
+					</configuration>
+				</plugin>
+
+				<!-- Ermöglicht die Ablage von SNAPSHOT-Artefakten im JFrog Artifactory -->
+				<plugin>
+					<groupId>org.jfrog.buildinfo</groupId>
+					<artifactId>artifactory-maven-plugin</artifactId>
+					<version>${artifactory-maven-plugin.version}</version>
+					<inherited>false</inherited>
+					<executions>
+						<execution>
+							<id>build-info</id>
+							<goals>
+								<goal>publish</goal>
+							</goals>
+							<configuration>
+								<publisher>
+									<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
+									<username>stream-github-actions</username>
+									<password>${env.ARTIFACTORY_TOKEN}</password>
+									<repoKey>libs-release-local</repoKey>
+									<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+								</publisher>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<!-- Konfiguration der Compiler Einstellungen für alle Projekte -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+					<configuration>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
+						<compilerVersion>${java.version}</compilerVersion>
+						<showDeprecation>true</showDeprecation>
+						<showWarnings>true</showWarnings>
+						<fork>true</fork>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+
+				<!-- Konfigurationen für Eclipse Projekte -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>${maven-eclipse-plugin.version}</version>
+					<configuration>
+						<downloadSources>true</downloadSources>
+						<downloadJavadocs>true</downloadJavadocs>
+
+						<additionalProjectnatures>
+							<projectnature>org.eclipse.m2e.core.maven2Nature</projectnature>
+						</additionalProjectnatures>
+						<additionalBuildcommands>
+							<buildcommand>org.eclipse.m2e.core.maven2Builder</buildcommand>
+						</additionalBuildcommands>
+
+						<testSourcesLast>true</testSourcesLast>
+					</configuration>
+				</plugin>
+
+				<!-- Konfiguration für die Erstellung von JavaDoc -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>aggregate</id>
+							<goals>
+								<goal>aggregate</goal>
+							</goals>
+							<phase>site</phase>
+							<configuration>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
 		<plugins>
-
-			<!-- Ermöglicht die Erstellung von Releases -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
-				<version>3.0.0-M1</version>
-				<configuration>
-					<tagNameFormat>v@{project.version}</tagNameFormat>
-				</configuration>
 			</plugin>
-			<!-- Ermöglicht die Ablage von SNAPSHOT-Artefakten im JFrog Artifactory -->
 			<plugin>
 				<groupId>org.jfrog.buildinfo</groupId>
 				<artifactId>artifactory-maven-plugin</artifactId>
-				<version>2.2.1</version>
-				<inherited>false</inherited>
-				<executions>
-					<execution>
-						<id>build-info</id>
-						<goals>
-							<goal>publish</goal>
-						</goals>
-						<configuration>
-							<publisher>
-								<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
-								<username>stream-github-actions</username>
-								<password>${env.ARTIFACTORY_TOKEN}</password>
-								<repoKey>libs-release-local</repoKey>
-								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
-							</publisher>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>${maven-deploy-plugin.version}</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-
-			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-					<compilerVersion>${java.version}</compilerVersion>
-					<showDeprecation>true</showDeprecation>
-					<showWarnings>true</showWarnings>
-					<fork>true</fork>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-
-					<additionalProjectnatures>
-						<projectnature>org.eclipse.m2e.core.maven2Nature</projectnature>
-					</additionalProjectnatures>
-					<additionalBuildcommands>
-						<buildcommand>org.eclipse.m2e.core.maven2Builder</buildcommand>
-					</additionalBuildcommands>
-
-					<testSourcesLast>true</testSourcesLast>
-				</configuration>
 			</plugin>
-
-			<!-- Erstelle JavaDoc -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${maven-javadoc-plugin.version}</version>
-				<configuration>
-				</configuration>
-				<executions>
-					<execution>
-						<id>aggregate</id>
-						<goals>
-							<goal>aggregate</goal>
-						</goals>
-						<phase>site</phase>
-						<configuration>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
 
 	<profiles>
-
 		<!-- Ermöglicht den Zugriff auf das JFrog Artifactory und wird von den 
 			github-actions genutzt, um Dependencies zu laden und Releases zu deployen, 
 			siehe auch https://dev.to/anthonyikeda/github-actions-maven-artifactory-4h65 -->
@@ -352,95 +424,5 @@
 				</pluginRepository>
 			</pluginRepositories>
 		</profile>
-		<profile>
-			<id>dev</id>
-			<build>
-				<plugins>
-					<!-- Führe JUnit Tests aus -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<skipTests>true</skipTests>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>UnitTests</id>
-			<build>
-				<plugins>
-					<!-- Führe JUnit Tests aus -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<skipTests>false</skipTests>
-							<!-- Hier werden die Unit-Test-Suites aufgeführt -->
-							<includes>
-								<include>**/RunMavenUnitTestSuite.java</include>
-							</includes>
-							<testFailureIgnore>true</testFailureIgnore>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>IntegrationTests</id>
-			<properties>
-				<skip.unit.tests>false</skip.unit.tests>
-			</properties>
-			<build>
-				<plugins>
-					<!-- Führe JUnit Tests aus -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<skipTests>false</skipTests>
-							<!-- Hier werden die Unit-Test-Suites aufgeführt -->
-							<includes>
-								<include>**/RunMavenIntegrationTestSuite.java</include>
-							</includes>
-							<testFailureIgnore>true</testFailureIgnore>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>AllTests</id>
-			<properties>
-				<skip.unit.tests>false</skip.unit.tests>
-			</properties>
-			<build>
-				<plugins>
-					<!-- Führe JUnit Tests aus -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<version>${maven-surefire-plugin.version}</version>
-						<configuration>
-							<skipTests>false</skipTests>
-							<!-- Hier werden die Unit-Test-Suites aufgeführt -->
-							<includes>
-								<include>**/RunMavenUnitTestSuite.java</include>
-								<include>**/RunMavenIntegrationTestSuite.java</include>
-							</includes>
-							<testFailureIgnore>true</testFailureIgnore>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 	</profiles>
-
 </project>
