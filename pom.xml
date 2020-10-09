@@ -32,6 +32,14 @@
 		<tag>HEAD</tag>
 	</scm>
 
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>morrigandev-artifactory-primary-0-releases</name>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-release</url>
+		</repository>
+	</distributionManagement>
+
 	<!-- Variablen für die maven Konfigurationen in den pom.xml Dateien -->
 	<properties>
 		<java.version>1.8</java.version>
