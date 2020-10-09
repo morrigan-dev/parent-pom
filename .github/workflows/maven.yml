@@ -61,8 +61,7 @@ jobs:
           ARTIFACTORY_USERNAME_REF: "stream-github-actions"
           ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
           BUILD_ENV: 'github-actions'
-        run: |
-          ./mvnw --batch-mode release:prepare
+        run: mvnw --batch-mode release:prepare
       - name: Push the release
         env:
           SCM_USERNAME_REF: 'github-actions'
@@ -74,4 +73,4 @@ jobs:
         run: ./mvnw --batch-mode release:perform
       - name: Rollback if failure
         if: ${{ failure() }}
-        run: ./mvnw --batch-mode release:rollback
+        run: mvnw --batch-mode release:rollback
