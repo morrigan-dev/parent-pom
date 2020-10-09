@@ -10,10 +10,19 @@
 	<packaging>pom</packaging>
 	<description>Enthält globale maven Konfigurationen, die für alle Projekte gelten.</description>
 
+	<scm>
+		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git/</developerConnection>
+		<url>https://github.com/morrigan-dev/parent-pom</url>
+		<tag>HEAD</tag>
+	</scm>
+
 	<!-- Variablen für die maven Konfigurationen in den pom.xml Dateien -->
 	<properties>
 		<java.version>1.8</java.version>
 		<ejb.version>3.1</ejb.version>
+
+		<!-- Wird für die GitHub Actions benötigt -->
+		<project.scm.id>github</project.scm.id>
 
 		<!-- Variablen für Plugin-Versionen -->
 		<maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version> <!-- Apache License -->
@@ -198,6 +207,40 @@
 		</pluginManagement>
 
 		<plugins>
+
+			<!-- Ermöglicht die Erstellung von Releases -->
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
+			<!-- Ermöglicht die Ablage von SNAPSHOT-Artefakten im JFrog Artifactory -->
+			<plugin>
+				<groupId>org.jfrog.buildinfo</groupId>
+				<artifactId>artifactory-maven-plugin</artifactId>
+				<version>2.7.0</version>
+				<inherited>false</inherited>
+				<executions>
+					<execution>
+						<id>build-info</id>
+						<goals>
+							<goal>publish</goal>
+						</goals>
+						<configuration>
+							<publisher>
+								<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
+								<username>stream-github-actions</username>
+								<password>${env.ARTIFACTORY_TOKEN}</password>
+								<repoKey>libs-release-local</repoKey>
+								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+							</publisher>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-deploy-plugin</artifactId>
@@ -259,11 +302,56 @@
 				</executions>
 			</plugin>
 		</plugins>
-
-
 	</build>
 
 	<profiles>
+
+		<!-- Ermöglicht den Zugriff auf das JFrog Artifactory und wird von den 
+			github-actions genutzt, um Dependencies zu laden und Releases zu deployen, 
+			siehe auch https://dev.to/anthonyikeda/github-actions-maven-artifactory-4h65 -->
+		<profile>
+			<id>github-actions</id>
+			<activation>
+				<property>
+					<name>env.BUILD_ENV</name>
+					<value>github-actions</value>
+				</property>
+			</activation>
+			<repositories>
+				<repository>
+					<id>artifactory</id>
+					<name>morrigandev</name>
+					<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>artifactory</id>
+					<name>morrigandev</name>
+					<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</pluginRepository>
+				<pluginRepository>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+					<id>central</id>
+					<name>bintray-plugins</name>
+					<url>https://jcenter.bintray.com</url>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
 		<profile>
 			<id>dev</id>
 			<build>
