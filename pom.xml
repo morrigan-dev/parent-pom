@@ -357,13 +357,23 @@
 							<goal>publish</goal>
 						</goals>
 						<configuration>
+							<artifactory>
+								<includeEnvVars>true</includeEnvVars>
+								<envVarsExcludePatterns>*password*,*secret*,*key*,*token*,*passphrase*</envVarsExcludePatterns>
+								<timeoutSec>60</timeoutSec>
+							</artifactory>
 							<publisher>
 								<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
-								<username>${env.ARTIFACTORY_USERNAME}</username>
-								<password>${env.ARTIFACTORY_TOKEN}</password>
+								<username>${secrets.ARTIFACTORY_USERNAME}</username>
+								<password>${secrets.ARTIFACTORY_TOKEN}</password>
 								<repoKey>libs-release-local</repoKey>
 								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
 							</publisher>
+							<buildInfo>
+								<buildName>plugin-demo</buildName>
+								<buildNumber>1</buildNumber>
+								<buildUrl>http://build-url.org</buildUrl>
+							</buildInfo>
 						</configuration>
 					</execution>
 				</executions>
@@ -382,53 +392,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<!-- Ermöglicht den Zugriff auf das JFrog Artifactory und wird von den 
-			github-actions genutzt, um Dependencies zu laden und Releases zu deployen, 
-			siehe auch https://dev.to/anthonyikeda/github-actions-maven-artifactory-4h65 -->
-		<profile>
-			<id>github-actions</id>
-			<activation>
-				<property>
-					<name>env.BUILD_ENV</name>
-					<value>github-actions</value>
-				</property>
-			</activation>
-			<repositories>
-				<repository>
-					<id>artifactory</id>
-					<name>morrigandev</name>
-					<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>artifactory</id>
-					<name>morrigandev</name>
-					<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</pluginRepository>
-				<pluginRepository>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-					<id>central</id>
-					<name>bintray-plugins</name>
-					<url>https://jcenter.bintray.com</url>
-				</pluginRepository>
-			</pluginRepositories>
-		</profile>
-	</profiles>
 </project>
