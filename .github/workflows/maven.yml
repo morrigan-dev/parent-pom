@@ -20,23 +20,23 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Setup Maven settings.xml
-      uses: whelk-io/maven-settings-xml-action@v11
-      with:
-          servers: '[{"id": "artifactory", "username": "${env.ARTIFACTORY_USERNAME_REF}", "password": "${env.ARTIFACTORY_TOKEN_REF}"}]'
+#    - name: Setup Maven settings.xml
+#      uses: whelk-io/maven-settings-xml-action@v11
+#      with:
+#          servers: '[{"id": "artifactory", "username": "${env.ARTIFACTORY_USERNAME_REF}", "password": "${env.ARTIFACTORY_TOKEN_REF}"}]'
     - name: Build with Maven
-      env:
-          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
-          ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
-          BUILD_ENV: 'github-actions'
-      run: mvn -B package --file pom.xml
+#      env:
+#          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
+#          BUILD_ENV: 'github-actions'
+      run: mvn -B deploy --file pom.xml
 
   release:
     
     runs-on: ubuntu-latest
     
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - uses: actions/checkout@v2
