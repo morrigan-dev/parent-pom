@@ -35,7 +35,7 @@
 	<distributionManagement>
 		<repository>
 			<id>central</id>
-			<name>stream-github-actions</name>
+			<name>morrigandev-artifactory-primary-0-releases</name>
 			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
 		</repository>
 	</distributionManagement>
@@ -49,7 +49,7 @@
 		<project.scm.id>github</project.scm.id>
 
 		<!-- Variablen für Plugin-Versionen -->
-		<artifactory-maven-plugin.version>2.2.1</artifactory-maven-plugin.version>
+		<artifactory-maven-plugin.version>3.0.0</artifactory-maven-plugin.version>
 		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
 		<maven-assembly-plugin.version>2.5.5</maven-assembly-plugin.version> <!-- Apache License -->
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version> <!-- Apache License -->
@@ -199,6 +199,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jcenter</id>
+			<url>https://jcenter.bintray.com</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 
 	<build>
 		<!-- Einstellung für die Standard Maven Sources Strukturen -->
@@ -351,7 +359,7 @@
 						<configuration>
 							<publisher>
 								<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
-								<username>${env.ARTIFACTORY_USERNAME</username>
+								<username>${env.ARTIFACTORY_USERNAME}</username>
 								<password>${env.ARTIFACTORY_TOKEN}</password>
 								<repoKey>libs-release-local</repoKey>
 								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
