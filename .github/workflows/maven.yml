@@ -26,7 +26,7 @@ jobs:
           servers: '[{"id": "artifactory", "username": "${env.ARTIFACTORY_USERNAME_REF}", "password": "${env.ARTIFACTORY_TOKEN_REF}"}]'
     - name: Build with Maven
       env:
-          ARTIFACTORY_USERNAME_REF: "stream-github-actions"
+          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
           ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
           BUILD_ENV: 'github-actions'
       run: mvn -B package --file pom.xml
@@ -58,7 +58,7 @@ jobs:
         env:
           SCM_USERNAME_REF: 'github-actions'
           SCM_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
-          ARTIFACTORY_USERNAME_REF: "stream-github-actions"
+          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
           ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
           BUILD_ENV: 'github-actions'
         run: |
@@ -69,7 +69,7 @@ jobs:
         env:
           SCM_USERNAME_REF: 'github-actions'
           SCM_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
-          ARTIFACTORY_USERNAME_REF: "stream-github-actions"
+          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
           ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
           ARTIFACTORY_TOKEN:  ${{ secrets.ARTIFACTORY_TOKEN }}
           BUILD_ENV: 'github-actions'
