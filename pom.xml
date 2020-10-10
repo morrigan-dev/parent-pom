@@ -27,7 +27,8 @@
 	</developers>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git/</developerConnection>
+		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git</developerConnection>
+<!-- 		<connection>scm:git:https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/morrigan-dev/parent-pom.git/</connection> -->
 		<url>https://github.com/morrigan-dev/parent-pom</url>
 		<tag>HEAD</tag>
 	</scm>
