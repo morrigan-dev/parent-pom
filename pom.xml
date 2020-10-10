@@ -48,6 +48,11 @@
 		<!-- Wird für die GitHub Actions benötigt -->
 		<project.scm.id>github</project.scm.id>
 
+		<!-- Wird für die SonarCloud Prüfungen benötigt -->
+		<sonar.projectKey>morrigan-dev_parent-pom</sonar.projectKey>
+		<sonar.organization>morrigan-dev</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
 		<!-- Variablen für Plugin-Versionen -->
 		<artifactory-maven-plugin.version>3.0.0</artifactory-maven-plugin.version>
 		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
