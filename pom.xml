@@ -370,7 +370,7 @@
 								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
 							</publisher>
 							<buildInfo>
-								<buildName>plugin-demo</buildName>
+								<buildName>parent-pom</buildName>
 								<buildNumber>1</buildNumber>
 								<buildUrl>http://build-url.org</buildUrl>
 							</buildInfo>
