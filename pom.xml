@@ -364,8 +364,8 @@
 							</artifactory>
 							<publisher>
 								<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
-								<username>${secrets.ARTIFACTORY_USERNAME}</username>
-								<password>${secrets.ARTIFACTORY_TOKEN}</password>
+								<username>${ARTIFACTORY_USERNAME}</username>
+								<password>${ARTIFACTORY_TOKEN}</password>
 								<repoKey>libs-release-local</repoKey>
 								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
 							</publisher>
