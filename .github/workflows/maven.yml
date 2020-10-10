@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  build-snapshot:
 
     runs-on: ubuntu-latest
 
@@ -20,23 +20,17 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-#    - name: Setup Maven settings.xml
-#      uses: whelk-io/maven-settings-xml-action@v11
-#      with:
-#          servers: '[{"id": "artifactory", "username": "${env.ARTIFACTORY_USERNAME_REF}", "password": "${env.ARTIFACTORY_TOKEN_REF}"}]'
     - name: Build with Maven
       env:
           ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
           ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
-#          BUILD_ENV: 'github-actions'
       run: mvn -B deploy --file pom.xml
 
   release:
     
     runs-on: ubuntu-latest
     
-    needs: build
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
 
     steps:
       - uses: actions/checkout@v2
@@ -44,36 +38,43 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-      - name: maven-settings-xml-action
-        uses: whelk-io/maven-settings-xml-action@v11
-        with:
-          servers: '[{"id": "github", "username": "${env.SCM_USERNAME_REF}", "password": "${env.SCM_TOKEN_REF}"},{"id": "artifactory","username": "${env.ARTIFACTORY_USERNAME_REF}","password": "${env.ARTIFACTORY_TOKEN_REF}"}]'
+#      - name: maven-settings-xml-action
+#        uses: whelk-io/maven-settings-xml-action@v11
+#        with:
+#          servers: '[{"id": "github", "username": "${env.SCM_USERNAME_REF}", "password": "${env.SCM_TOKEN_REF}"},{"id": "artifactory","username": "${env.ARTIFACTORY_USERNAME_REF}","password": "${env.ARTIFACTORY_TOKEN_REF}"}]'
       - name: Configure git
         run: |
           git config --global committer.email "noreply@github.com"
           git config --global committer.name "GitHub"
           git config --global author.email "${GITHUB_ACTOR}@users.noreply.github.com"
           git config --global author.name "${GITHUB_ACTOR}"
+      - name: Build with Maven
+#        env:
+#          ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
+        run: mvn -B package --file pom.xml    
       - name: Prepare the release
-        env:
-          SCM_USERNAME_REF: 'github-actions'
-          SCM_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
-          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
-          ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
-          BUILD_ENV: 'github-actions'
+#        env:
+#          SCM_USERNAME_REF: 'github-actions'
+#          SCM_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
+#          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
+#          BUILD_ENV: 'github-actions'
         run: |
-           mvn --batch-mode release:prepare
+           mvn -B release:prepare
 #          mvn -N io.takari:maven:wrapper
 #          ./mvnw --batch-mode release:prepare
       - name: Push the release
         env:
-          SCM_USERNAME_REF: 'github-actions'
-          SCM_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
-          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
-          ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
-          ARTIFACTORY_TOKEN:  ${{ secrets.ARTIFACTORY_TOKEN }}
-          BUILD_ENV: 'github-actions'
-        run: mvn --batch-mode release:perform
+#          SCM_USERNAME_REF: 'github-actions'
+#          SCM_TOKEN_REF: ${{ secrets.GITHUB_TOKEN }}
+#          ARTIFACTORY_USERNAME_REF: ${{ secrets.ARTIFACTORY_USERNAME }}
+#          ARTIFACTORY_TOKEN_REF: ${{ secrets.ARTIFACTORY_TOKEN }}
+#          ARTIFACTORY_TOKEN:  ${{ secrets.ARTIFACTORY_TOKEN }}
+#          BUILD_ENV: 'github-actions'
+          ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }}
+          ARTIFACTORY_TOKEN: ${{ secrets.ARTIFACTORY_TOKEN }}
+        run: mvn -B release:perform
       - name: Rollback if failure
         if: ${{ failure() }}
-        run: mvn --batch-mode release:rollback
+        run: mvn -B release:rollback
