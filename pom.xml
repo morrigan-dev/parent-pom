@@ -4,7 +4,7 @@
 
 	<groupId>de.morrigan.dev.common</groupId>
 	<artifactId>parent-pom</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Parent-POM</name>
@@ -28,7 +28,7 @@
 		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git</developerConnection>
 <!-- 		<connection>scm:git:https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/morrigan-dev/parent-pom.git/</connection> -->
 		<url>https://github.com/morrigan-dev/parent-pom</url>
-		<tag>v1.0.1</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<distributionManagement>
