@@ -15,14 +15,14 @@ jobs:
           days=$(( ( $(date --utc +%s) - $timestamp ) / 86400 ))
           export LAST_COMMIT=$days
           echo "days since last commit:" $days
-          echo "LAST_COMMIT=${days}" >> $GITHUB_ENV
-          echo $LAST_COMMIT
+          echo "::set-env name=LAST_COMMIT::${days}"
+          echo ${{ env.LAST_COMMIT }}
     
   build-quality:
     name: Quality-Build
     needs: get-last-commit
     runs-on: ubuntu-latest
-    if: $LAST_COMMIT == 0
+    if: ${{ env.LAST_COMMIT == 0 }}
     
     steps:
       - uses: actions/checkout@v2
