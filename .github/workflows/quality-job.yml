@@ -4,9 +4,12 @@ on:
     - cron:  '0 1 * * *'
   workflow_dispatch:
 jobs:
-  get-last-commit:
-    name: Get-last-commit
+  build-quality:
+    name: Quality-Build
+#    needs: get-last-commit
     runs-on: ubuntu-latest
+#    if: $LAST_COMMIT == 0
+    
     steps:
       - run: |
           curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/commits | jq -r '[.[]][0]' > $HOME/commit.json
@@ -15,14 +18,9 @@ jobs:
           days=$(( ( $(date --utc +%s) - $timestamp ) / 86400 ))
           export LAST_COMMIT=$days
           echo "days since last commit:" $days
-    
-  build-quality:
-    name: Quality-Build
-    needs: get-last-commit
-    runs-on: ubuntu-latest
-    if: $LAST_COMMIT == 0
-    
-    steps:
+          echo "LAST_COMMIT=${days}" >> $GITHUB_ENV
+          echo $LAST_COMMIT
+
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
