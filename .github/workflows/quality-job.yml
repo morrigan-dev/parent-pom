@@ -4,9 +4,24 @@ on:
     - cron:  '0 1 * * *'
   workflow_dispatch:
 jobs:
+  get-last-commit:
+    name: Get-last-commit
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/commits | jq -r '[.[]][0]' > $HOME/commit.json
+          date="$(jq -r '.commit.author.date' $HOME/commit.json)"
+          timestamp=$(date --utc -d "$date" +%s)
+          days=$(( ( $(date --utc +%s) - $timestamp ) / 86400 ))
+          export LAST_COMMIT=$days
+          echo "days since last commit:" $days
+    
   build-quality:
     name: Quality-Build
+    needs: get-last-commit
     runs-on: ubuntu-latest
+    if: $LAST_COMMIT == 0
+    
     steps:
       - run: |
           curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/commits | jq -r '[.[]][0]' > $HOME/commit.json
