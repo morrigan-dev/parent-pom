@@ -17,11 +17,11 @@ genutzt wird. Es enthält die wichtigsten Konfigurationen für meine maven Proje
 ein CI/CD Entwicklungsprozess realisiere.
 
 Hierfür werden folgende Technologien genutzt:
-- Maven (als Build & Dependency Werkzeug)
-- GitHub (als SCM)
-- GitHub actions (als CI/CD Pipeline)
-- Sonarcloud.io (als Quality Werkzeug)
-- JFrog Artifactory (als Artefakt Repository)
+- [Maven](http://maven.apache.org/) (als Build & Dependency Werkzeug)
+- [GitHub](https://github.com/morrigan-dev) (als SCM)
+- [GitHub actions](https://docs.github.com/en/free-pro-team@latest/actions) (als CI/CD Pipeline)
+- [Sonarcloud.io](https://sonarcloud.io/organizations/morrigan-dev/projects) (als Quality Werkzeug)
+- [JFrog Artifactory](https://morrigandev.jfrog.io/ui/packages) (als Artefakt Repository)
 
 ## Wer bin ich
 
