@@ -32,12 +32,21 @@
 		<tag>HEAD</tag>
 	</scm>
 
+	<!-- Benötigt für den mvn deploy Vorgang benötigt, um die Erzeugten Artefakte 
+		in das JFrog Artifactory zu deployen -->
 	<distributionManagement>
 		<repository>
+			<uniqueVersion>false</uniqueVersion>
 			<id>central</id>
 			<name>morrigandev-artifactory-primary-0-releases</name>
 			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
 		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>snapshots</id>
+			<name>morrigandev-artifactory-primary-0-snapshots</name>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-snapshot-local</url>
+		</snapshotRepository>
 	</distributionManagement>
 
 	<!-- Variablen für die maven Konfigurationen in den pom.xml Dateien -->
@@ -205,10 +214,76 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<!-- SNAPSHOT Repository für eigene Bibliotheken -->
+		<repository>
+			<name>morrigan-dev snapshots</name>
+			<id>snapshots-repo</id>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-snapshot-local</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</repository>
+
+		<!-- RELEASE Repository für eigene Bibliotheken -->
+		<repository>
+			<name>morrigan-dev releases</name>
+			<id>releases-repo</id>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 	<pluginRepositories>
+		<!-- Benötigt für: artifactory-maven-plugin -->
 		<pluginRepository>
 			<id>jcenter</id>
 			<url>https://jcenter.bintray.com</url>
+		</pluginRepository>
+		
+		<!-- SNAPSHOT Repository für eigene Bibliotheken -->
+		<pluginRepository>
+			<name>morrigan-dev snapshots</name>
+			<id>snapshots-repo</id>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-snapshot-local</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+		</pluginRepository>
+
+		<!-- RELEASE Repository für eigene Bibliotheken -->
+		<pluginRepository>
+			<name>morrigan-dev releases</name>
+			<id>releases-repo</id>
+			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
 
