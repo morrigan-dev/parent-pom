@@ -1,10 +1,31 @@
-# This workflow will create a new release an deploy it to artifactory
-name: Create new release
+# Release build-job
+#
+# Erzeugt ein neues Release. Dabei werden mehrer Schritte durchlaufen:
+#  1. Prüfung, ob ein Release möglich ist und Durchführung der Erstellung des Releases
+#     -> http://maven.apache.org/maven-release/maven-release-plugin/examples/prepare-release.html
+#  2. Release veröffentlichen
+#     -> http://maven.apache.org/maven-release/maven-release-plugin/examples/perform-release.html
+# Sollte es während der Erstellung zu Fehlern kommen, wird das Release zurückgerollt
+# -> http://maven.apache.org/maven-release/maven-release-plugin/examples/rollback-release.html
+#
+# Voraussetzungen:
+# - Nutzung des artifactory-maven-plugin Plugins
+# - Benutzer des Artifactories in den Secrets unter ARTIFACTORY_USERNAME hinterlegt
+# - Token des Benutzers des Artifactories in den Secrets unter ARTIFACTORY_TOKEN hinterlegt
+# - Es handelt sich bei dem branch um den master branch
+#
+# Dieser Job kann nur manuell angestoßen werden.
+
+name: Run release build-job
 on: [workflow_dispatch]
 jobs:
-  build-release:  
+
+  # Erstellung eines neuen Releases
+  build-release:
+
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
+
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 1.8

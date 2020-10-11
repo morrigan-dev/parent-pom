@@ -1,7 +1,17 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# SNAPSHOT build workflow
+# 
+# Bei jeder Änderung auf einem beliebigen branch wird ein SNAPSHOT maven build angestoßen,
+# der die aktuelle Änderung compiliert und das resultierende SNAPSHOT Artefakt deployt,
+# sofern in der pom.xml ein Plugin für das Deployment des Artefakts hiterlegt ist.
+#
+# Voraussetzungen:
+# - Nutzung des artifactory-maven-plugin Plugins
+# - Benutzer des Artifactories in den Secrets unter ARTIFACTORY_USERNAME hinterlegt
+# - Token des Benutzers des Artifactories in den Secrets unter ARTIFACTORY_TOKEN hinterlegt
+#
+# Dieser Job wird bei jeder Änderung angestoßen.
 
-name: Run snapshot build
+name: Run snapshot build-job
 
 on:
   push:
@@ -10,6 +20,7 @@ on:
 jobs:
   build-snapshot:
 
+    name: SNAPSHOT build-job
     runs-on: ubuntu-latest
 
     steps:

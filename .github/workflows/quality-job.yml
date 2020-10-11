@@ -1,12 +1,29 @@
-name: Run quality build
+# Quality build-job
+#
+# Täglich in der Nacht oder bei manuellem Anstoß wird der aktuelle Stand mittels sonarcloud
+# analysiert und ein Bericht erstellt. Eine Analyse wird nur dann durchgeführt, wenn es in
+# den letzten 24h auch eine Änderung am Sourcecode gegeben hat.
+#
+# Voraussetzungen:
+# - Sonar Properties sind in der pom.xml vorhanden
+#
+# Dieser Job wird manuell oder einmal täglich in der Nacht angestoßen.
+
+name: Run quality build-job
 on: 
   schedule:
     - cron:  '0 1 * * *'
   workflow_dispatch:
 jobs:
+
+  # Ermittelt den letzten Commit Zeitstempel, um die Anzahl der Tage zu berechnen, die seit
+  # dem letzten Commit vergangen sind. Das Ergebnis wird in der Umgebungsvariable LAST_COMMIT
+  # abgelegt und kann vom Folge Job ausgewertet werden.
   get-last-commit:
-    name: Get last commit
+
+    name: Get days since last commit
     runs-on: ubuntu-latest
+
     steps:
       - run: |
           curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/commits | jq -r '[.[]][0]' > $HOME/commit.json
@@ -18,8 +35,10 @@ jobs:
           echo "LAST_COMMIT=${days}" >> $GITHUB_ENV
           echo $LAST_COMMIT
     
+  # Stößt eine Analyse des Sourcecodes auf der sonarcloud.io Plattform an.
   build-quality:
-    name: Quality-Build
+
+    name: Quality build-job
     needs: get-last-commit
     runs-on: ubuntu-latest
     
