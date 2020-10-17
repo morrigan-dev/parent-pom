@@ -98,9 +98,9 @@
 		<jboss-javaee-7.0.version>1.0.3.Final</jboss-javaee-7.0.version> <!-- GNU Lesser General Public License v2.1 -->
 		<jfreechart.version>1.5.0</jfreechart.version> <!-- GNU Lesser General Public Licence v3 -->
 		<junit.version>4.12</junit.version> <!-- Eclipse Public License 1.0 (nur Verwendung) -->
-		<log4j-api.version>2.9.0</log4j-api.version> <!-- Apache License -->
-		<log4j-core.version>2.9.0</log4j-core.version> <!-- Apache License -->
-		<log4j-slf4j-impl.version>2.9.0</log4j-slf4j-impl.version>
+		<log4j-api.version>2.13.3</log4j-api.version> <!-- Apache License -->
+		<log4j-core.version>2.13.3</log4j-core.version> <!-- Apache License -->
+		<log4j-slf4j-impl.version>2.13.3</log4j-slf4j-impl.version>
 		<mockito-all.version>1.9.5</mockito-all.version> <!-- MIT License -->
 		<quartz.version>2.2.1</quartz.version> <!-- Apache License -->
 		<resteasy.version>3.0.6.Final</resteasy.version> <!-- GNU Lesser General Public License v2.1 -->
