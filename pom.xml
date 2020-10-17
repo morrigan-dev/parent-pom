@@ -4,7 +4,7 @@
 
 	<groupId>de.morrigan.dev.common</groupId>
 	<artifactId>parent-pom</artifactId>
-	<version>1.0.5-SNAPSHOT</version>
+	<version>1.0.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>Parent-POM</name>
@@ -362,7 +362,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore />
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
