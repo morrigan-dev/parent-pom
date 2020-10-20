@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
@@ -32,8 +31,7 @@
 		<tag>HEAD</tag>
 	</scm>
 
-	<!-- Benötigt für den mvn deploy Vorgang benötigt, um die Erzeugten Artefakte 
-		in das JFrog Artifactory zu deployen -->
+	<!-- Benötigt für den mvn deploy Vorgang benötigt, um die erzeugten Artefakte in das JFrog Artifactory zu deployen -->
 	<distributionManagement>
 		<repository>
 			<uniqueVersion>false</uniqueVersion>
@@ -145,10 +143,8 @@
 			</dependency>
 
 			<!-- Diverse Test Bibliotheken -->
-			<!-- Es wird nur bei Test-Bibliotheken im DependencyManagement explizit 
-				der Scope test angegeben. -->
-			<!-- Bei allen anderen Dependencys ist der Scope in den benutzenden Modulen 
-				zu setzen! -->
+			<!-- Es wird nur bei Test-Bibliotheken im DependencyManagement explizit der Scope test angegeben. -->
+			<!-- Bei allen anderen Dependencys ist der Scope in den benutzenden Modulen zu setzen! -->
 			<!-- Siehe auch: https://stackoverflow.com/questions/15221299/dependencymanagement-and-scope -->
 			<dependency>
 				<groupId>junit</groupId>
@@ -343,8 +339,7 @@
 
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
