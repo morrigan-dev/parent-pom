@@ -39,7 +39,7 @@ Betrufstätigkeit absolviere.
 
 ## Lizenzierung
 
-Copyright (c) 2020 Thomas Gattinger.
+Copyright (c) 2020 Thomas Gattinger
 
 Lizenziert unter **Apache-Lizenz, Version 2.0** (die "Lizenz"). Sie dürfen diese Datei ausschließlich im Einklang mit 
 der Lizenz verwenden.
