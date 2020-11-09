@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -49,7 +50,7 @@
 	<!-- Variablen für die maven Konfigurationen in den pom.xml Dateien -->
 	<properties>
 		<java.version>1.8</java.version>
-		<ejb.version>3.1</ejb.version>
+		<ejb.version>3.2</ejb.version>
 
 		<!-- Wird für die GitHub Actions benötigt -->
 		<project.scm.id>github</project.scm.id>
@@ -76,10 +77,10 @@
 
 		<!-- Variablen für Dependency-Versionen -->
 		<cloning.version>1.9.2</cloning.version> <!-- Apache License -->
-		<commons-codec.version>1.10</commons-codec.version> <!-- Apache License -->
+		<commons-codec.version>1.15</commons-codec.version> <!-- Apache License -->
 		<commons-collections4.version>4.1</commons-collections4.version> <!-- Apache License -->
 		<commons-io.version>2.4</commons-io.version> <!-- Apache License -->
-		<commons-lang3.version>3.4</commons-lang3.version> <!-- Apache License -->
+		<commons-lang3.version>3.11</commons-lang3.version> <!-- Apache License -->
 		<commons-math3.version>3.5</commons-math3.version> <!-- Apache License -->
 		<commons-validator.version>1.6</commons-validator.version> <!-- Apache License -->
 		<controlsfx.version>8.40.9</controlsfx.version> <!-- The 3-Clause BSD License -->
@@ -96,7 +97,7 @@
 		<jacoco.version>0.7.5.201505241946</jacoco.version> <!-- Eclipse Public License 1.0 (nur Verwendung) -->
 		<jboss-javaee-7.0.version>1.0.3.Final</jboss-javaee-7.0.version> <!-- GNU Lesser General Public License v2.1 -->
 		<jfreechart.version>1.5.0</jfreechart.version> <!-- GNU Lesser General Public Licence v3 -->
-		<junit.version>4.12</junit.version> <!-- Eclipse Public License 1.0 (nur Verwendung) -->
+		<junit.version>4.13.1</junit.version> <!-- Eclipse Public License 1.0 (nur Verwendung) -->
 		<log4j-api.version>2.13.3</log4j-api.version> <!-- Apache License -->
 		<log4j-core.version>2.13.3</log4j-core.version> <!-- Apache License -->
 		<log4j-slf4j-impl.version>2.13.3</log4j-slf4j-impl.version>
@@ -139,6 +140,11 @@
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-lang3</artifactId>
 				<version>${commons-lang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commons-codec.version}</version>
 			</dependency>
 
 			<!-- Diverse Test Bibliotheken -->
@@ -231,6 +237,19 @@
 	</dependencies>
 
 	<repositories>
+		<repository>
+			<id>jcenter</id>
+			<url>https://jcenter.bintray.com</url>
+		</repository>
+		<repository>
+			<id>JBoss Repository</id>
+			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+		</repository>
+		<repository>
+			<id>redhat</id>
+			<url>https://maven.repository.redhat.com/ga/</url>
+		</repository>
+
 		<!-- SNAPSHOT Repository für eigene Bibliotheken -->
 		<repository>
 			<name>morrigan-dev snapshots</name>
