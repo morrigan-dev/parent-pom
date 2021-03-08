@@ -33,9 +33,7 @@ Backends verantwortlich war, welches ebenfalls in Java erstellt wurde. Hier kame
 Hibernate und viele mehr zum Einsatz.<br />
 Natürlich wurden bei diesen Anwendungen auch Datenbanken genutzt. Hier bin ich vertraut mit: MySQL, MSSQL, Oracle, H2.   
 
-Im Jahr 2020 habe ich mich für ein Fernstudium an der Hochschule Trier entschieden, um den Master of Science im Bereich
-Informatik zu erreichen. Es handelt sich hierbei um ein zertifikatsbasiertes Fernstudium, welches ich neben meiner normalen
-Betrufstätigkeit absolviere.
+Im Jahr 2020 habe ich mich für ein Fernstudium an der Hochschule Trier entschieden, um den Master of Computer Science im Bereich Informatik zu erreichen. Es handelt sich hierbei um ein zertifikatsbasiertes Fernstudium, welches ich neben meiner normalen Betrufstätigkeit absolviere.
 
 ## Lizenzierung
 
