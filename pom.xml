@@ -33,7 +33,7 @@
 	<!-- Benötigt für den mvn deploy Vorgang benötigt, um die erzeugten Artefakte in das JFrog Artifactory zu deployen -->
 	<distributionManagement>
 		<repository>
-			<uniqueVersion>false</uniqueVersion>
+			<uniqueVersion>true</uniqueVersion>
 			<id>releases-repo</id>
 			<name>morrigan-libs-release-local</name>
 			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-release-local/</url>
