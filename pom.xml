@@ -35,14 +35,14 @@
 		<repository>
 			<uniqueVersion>false</uniqueVersion>
 			<id>releases-repo</id>
-			<name>morrigandev-artifactory-primary-0-releases</name>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+			<name>morrigan-libs-release-local</name>
+			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-release-local/</url>
 		</repository>
 		<snapshotRepository>
 			<uniqueVersion>true</uniqueVersion>
 			<id>snapshots-repo</id>
-			<name>morrigandev-artifactory-primary-0-snapshots</name>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-snapshot-local</url>
+			<name>morrigan-libs-snapshot-local</name>
+			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-snapshot-local</url>
 		</snapshotRepository>
 	</distributionManagement>
 
@@ -251,9 +251,9 @@
 
 		<!-- SNAPSHOT Repository für eigene Bibliotheken -->
 		<repository>
-			<name>morrigan-dev snapshots</name>
 			<id>snapshots-repo</id>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-snapshot-local</url>
+			<name>morrigan-libs-snapshot-local</name>
+			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-snapshot-local</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>false</enabled>
@@ -267,9 +267,9 @@
 
 		<!-- RELEASE Repository für eigene Bibliotheken -->
 		<repository>
-			<name>morrigan-dev releases</name>
 			<id>releases-repo</id>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+			<name>morrigan-libs-release-local</name>
+			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-release-local</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
@@ -290,9 +290,9 @@
 
 		<!-- SNAPSHOT Repository für eigene Bibliotheken -->
 		<pluginRepository>
-			<name>morrigan-dev snapshots</name>
 			<id>snapshots-repo</id>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-snapshot-local</url>
+			<name>morrigan-libs-snapshot-local</name>
+			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-snapshot-local</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>false</enabled>
@@ -306,9 +306,9 @@
 
 		<!-- RELEASE Repository für eigene Bibliotheken -->
 		<pluginRepository>
-			<name>morrigan-dev releases</name>
 			<id>releases-repo</id>
-			<url>https://morrigandev.jfrog.io/artifactory/libs-release-local</url>
+			<name>morrigan-libs-release-local</name>
+			<url>https://morrigan.jfrog.io/artifactory/morrigan-libs-release-local</url>
 			<layout>default</layout>
 			<releases>
 				<enabled>true</enabled>
@@ -504,11 +504,11 @@
 							<publisher>
 								<publishArtifacts>true</publishArtifacts>
 								<publishBuildInfo>false</publishBuildInfo>
-								<contextUrl>https://morrigandev.jfrog.io/artifactory</contextUrl>
+								<contextUrl>https://morrigan.jfrog.io/artifactory</contextUrl>
 								<username>${ARTIFACTORY_USERNAME}</username>
 								<password>${ARTIFACTORY_TOKEN}</password>
-								<repoKey>libs-release-local</repoKey>
-								<snapshotRepoKey>libs-snapshot-local</snapshotRepoKey>
+								<repoKey>morrigan-libs-release-local</repoKey>
+								<snapshotRepoKey>morrigan-libs-snapshot-local</snapshotRepoKey>
 							</publisher>
 						</configuration>
 					</execution>
