@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.morrigan.dev.common</groupId>
 	<artifactId>parent-pom</artifactId>
-	<version>1.0.10-SNAPSHOT</version>
+	<version>1.0.10</version>
 	<packaging>pom</packaging>
 
 	<name>Parent-POM</name>
@@ -28,7 +27,7 @@
 	<scm>
 		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git</developerConnection>
 		<url>https://github.com/morrigan-dev/parent-pom</url>
-		<tag>HEAD</tag>
+		<tag>v1.0.10</tag>
 	</scm>
 
 	<!-- Benötigt für den mvn deploy Vorgang, um die erzeugten Artefakte in das JFrog Artifactory zu deployen -->
