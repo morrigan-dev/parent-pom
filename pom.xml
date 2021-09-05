@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -60,6 +61,7 @@
 		<!-- Variablen für Plugin-Versionen -->
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version> <!-- Apache License -->
 		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version> <!-- EPL-2.0 (?) -->
+		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version> <!-- EPL 2.0 -->
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version> <!-- Apache License -->
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version> <!-- Apache License -->
 		<maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version> <!-- Apache License -->
@@ -272,13 +274,6 @@
 						<artifactId>hamcrest-core</artifactId>
 					</exclusion>
 				</exclusions>
-			</dependency>
-			<!-- Nützliches Util zur Ermittlung der Testabdeckung (Java Code Coverage) -->
-			<dependency>
-				<groupId>org.jacoco</groupId>
-				<artifactId>org.jacoco.core</artifactId>
-				<version>${jacoco.core.version}</version>
-				<scope>test</scope>
 			</dependency>
 			<!-- JUnit 4.x Unterstützung -->
 			<dependency>
@@ -511,6 +506,37 @@
 
 		<pluginManagement>
 			<plugins>
+
+				<!-- Nützliches Util zur Ermittlung der Testabdeckung (Java Code Coverage) -->
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>${jacoco-maven-plugin.version}</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>report</id>
+							<phase>prepare-package</phase>
+							<goals>
+								<goal>report</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<reportSets>
+							<reportSet>
+								<reports>
+									<report>report</report>
+								</reports>
+							</reportSet>
+						</reportSets>
+					</configuration>
+				</plugin>
+
 				<!-- Ermöglicht die Ablage von SNAPSHOT-Artefakten im JFrog Artifactory -->
 				<plugin>
 					<groupId>org.jfrog.buildinfo</groupId>
@@ -694,6 +720,10 @@
 		</pluginManagement>
 
 		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.jfrog.buildinfo</groupId>
 				<artifactId>artifactory-maven-plugin</artifactId>
