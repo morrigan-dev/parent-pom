@@ -236,6 +236,7 @@
 	</dependencies>
 
 	<repositories>
+	    <!-- Nutze öffentliche Repositories für öffentliche Bibliotheken -->
 		<repository>
 			<id>jcenter</id>
 			<url>https://jcenter.bintray.com</url>
