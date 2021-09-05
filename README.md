@@ -3,11 +3,12 @@
 </p>
 
 <p align="center">
-    <a href="https://github.com/morrigan-dev/parent-pom/actions/workflows/build-job.yml" title="Last Commit"><img src="https://img.shields.io/github/workflow/status/morrigan-dev/parent-pom/Run%20snapshot%20build-job?logo=GitHub&style=plastic"></a>
-    <a https://github.com/morrigan-dev/parent-pom/actions/workflows/quality-job.yml" title="Last Commit"><img src="https://img.shields.io/github/workflow/status/morrigan-dev/parent-pom/Run%20quality%20build-job?label=quality-build&logo=GitHub&style=plastic"></a>
-    <a https://sonarcloud.io/dashboard?id=morrigan-dev_parent-pom" title="Last Commit"><img src="https://img.shields.io/sonar/quality_gate/morrigan-dev_parent-pom?logo=SonarCloud&server=https%3A%2F%2Fsonarcloud.io&style=plastic"></a>
-    <a https://github.com/morrigan-dev/parent-pom/blob/main/LICENSE" title="Last Commit"><img src="https://img.shields.io/github/license/morrigan-dev/parent-pom?logo=GitHub&style=plastic"></a>
-    <a https://github.com/morrigan-dev/parent-pom" title="Last Commit"><img src="https://img.shields.io/github/last-commit/morrigan-dev/parent-pom?logo=GitHub&style=plastic"></a>
+    <a href="https://github.com/morrigan-dev/parent-pom/actions/workflows/build-job.yml" title="Build Job"><img src="https://img.shields.io/github/workflow/status/morrigan-dev/parent-pom/Run%20snapshot%20build-job?logo=GitHub&style=plastic"></a>
+    <a href="https://github.com/morrigan-dev/parent-pom/actions/workflows/quality-job.yml" title="Quality Job"><img src="https://img.shields.io/github/workflow/status/morrigan-dev/parent-pom/Run%20quality%20build-job?label=quality-build&logo=GitHub&style=plastic"></a>
+    <a href="https://github.com/morrigan-dev/parent-pom/blob/main/LICENSE" title="License"><img src="https://img.shields.io/github/license/morrigan-dev/parent-pom?logo=GitHub&style=plastic"></a>
+    <a href="https://github.com/morrigan-dev/parent-pom" title="Last Commit"><img src="https://img.shields.io/github/last-commit/morrigan-dev/parent-pom?logo=GitHub&style=plastic"></a>
+    <br>
+    <a href="https://sonarcloud.io/dashboard?id=morrigan-dev_parent-pom" title="Quality Gate"><img src="https://img.shields.io/sonar/quality_gate/morrigan-dev_parent-pom?logo=SonarCloud&server=https%3A%2F%2Fsonarcloud.io&style=plastic"></a>
 </p>
 
 <hr />
