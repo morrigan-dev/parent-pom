@@ -526,6 +526,11 @@
 						</execution>
 					</executions>
 					<configuration>
+						<excludes>
+							<!-- Ignoriere alle Testklassen selbst bei der Ermittlung der Testabdeckung -->
+							<!-- https://stackoverflow.com/questions/63321758/exclude-test-directories-in-multi-module-maven-projecty-from-jacoco-when-using-a -->
+							<exclude>de/morrigan/dev/test/*</exclude>
+						</excludes>
 						<reportSets>
 							<reportSet>
 								<reports>
