@@ -93,7 +93,6 @@
 		<jboss-javaee-7.0.version>1.1.1.Final</jboss-javaee-7.0.version> <!-- GNU Lesser General Public License v2.1 -->
 		<jfreechart.version>1.5.3</jfreechart.version> <!-- GNU Lesser General Public Licence v3 -->
 		<quartz.version>2.3.2</quartz.version> <!-- Apache License -->
-		<resteasy.version>4.7.1.Final</resteasy.version> <!-- GNU Lesser General Public License v2.1 -->
 		<opencsv.version>5.5.2</opencsv.version>
 
 		<!-- ==================== -->
