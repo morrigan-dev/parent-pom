@@ -93,7 +93,8 @@
 		<jboss-javaee-7.0.version>1.1.1.Final</jboss-javaee-7.0.version> <!-- GNU Lesser General Public License v2.1 -->
 		<jfreechart.version>1.5.3</jfreechart.version> <!-- GNU Lesser General Public Licence v3 -->
 		<quartz.version>2.3.2</quartz.version> <!-- Apache License -->
-		<opencsv.version>5.5.2</opencsv.version>
+		<opencsv.version>5.5.2</opencsv.version> <!-- Apache License -->
+		<reflections.version>0.9.12</reflections.version> <!-- BSD 2-clause -->
 
 		<!-- ==================== -->
 		<!-- Testing Dependencies -->
@@ -236,11 +237,17 @@
 				<artifactId>resteasy-client</artifactId>
 				<version>resteasy-client.version</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
+			<!-- Ermöglicht den Zugriff auf CSV Dateien -->
 			<dependency>
 				<groupId>com.opencsv</groupId>
 				<artifactId>opencsv</artifactId>
 				<version>${opencsv.version}</version>
+			</dependency>
+			<!-- Nützliche Reflection Utils -->
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>${reflections.version}</version>
 			</dependency>
 
 			<!-- ==================== -->
