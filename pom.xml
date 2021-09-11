@@ -101,10 +101,12 @@
 		<h2database.version>1.4.200</h2database.version> <!-- MPL 2.0 / EPL 1.0 (nur Verwendung) -->
 		<hamcrest-all.version>1.3</hamcrest-all.version> <!-- BSD 2 License -->
 		<hamcrest-date.version>2.0.7</hamcrest-date.version> <!-- BSD 2 License -->
-		<hamcrest-optional.version>2.0.0</hamcrest-optional.version> <!-- MIT License -->
+		<hamcrest-jackson.version>1.2.0</hamcrest-jackson.version> <!-- Apache License -->
+		<hamcrest-pojo.version>1.2.0</hamcrest-pojo.version> <!-- Apache License -->
 		<jacoco.core.version>0.8.7</jacoco.core.version> <!-- Eclipse Public License 2.0 (nur Verwendung) -->
 		<junit4.version>4.13.1</junit4.version> <!-- Eclipse Public License 1.0 (nur Verwendung) -->
 		<mockito-all.version>1.10.19</mockito-all.version> <!-- MIT License -->
+		<spotify-java-hamcrest.version>1.2.0</spotify-java-hamcrest.version> <!-- Apache License -->
 
 		<!-- ==================== -->
 		<!-- Logging Dependencies -->
@@ -275,12 +277,37 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<!-- Nützliche Erweiterung der hamcrest Bibiliothek mit Matchern für java.util.Optional -->
-			<!-- https://mvnrepository.com/artifact/com.github.npathai/hamcrest-optional -->
+			<!-- Nützliche Erweiterung der hamcrest Bibiliothek mit Matchern für JSON -->
 			<dependency>
-				<groupId>com.github.npathai</groupId>
+				<groupId>com.spotify</groupId>
+				<artifactId>hamcrest-jackson</artifactId>
+				<version>${spotify-java-hamcrest.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hamcrest</groupId>
+						<artifactId>hamcrest-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- Nützliche Erweiterung der hamcrest Bibiliothek mit Matchern für POJOs -->
+			<dependency>
+				<groupId>com.spotify</groupId>
+				<artifactId>hamcrest-pojo</artifactId>
+				<version>${spotify-java-hamcrest.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hamcrest</groupId>
+						<artifactId>hamcrest-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- Nützliche Erweiterung der hamcrest Bibiliothek mit Matchern für java.util.Optional -->
+			<dependency>
+				<groupId>com.spotify</groupId>
 				<artifactId>hamcrest-optional</artifactId>
-				<version>${hamcrest-optional.version}</version>
+				<version>${spotify-java-hamcrest.version}</version>
 				<scope>test</scope>
 				<exclusions>
 					<exclusion>
@@ -360,7 +387,15 @@
 			<artifactId>hamcrest-date</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.npathai</groupId>
+			<groupId>com.spotify</groupId>
+			<artifactId>hamcrest-jackson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.spotify</groupId>
+			<artifactId>hamcrest-pojo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.spotify</groupId>
 			<artifactId>hamcrest-optional</artifactId>
 		</dependency>
 		<dependency>
