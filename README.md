@@ -47,7 +47,7 @@ test-driven-development (TDD) sowie behavior-driven-development (BDD) sehr schä
 nicht mehr verzichten.
 In diesem Zusammenhang sind mir natürlich folgende Frameworks vertraut: JUnit, DBunit, XMLunit, Hamcrest, Cucumber
 
-Im Jahr 2020 habe ich mich für ein Fernstudium an der Hochschule Trier entschieden, um den Master of Computer Science im Bereich Informatik zu erreichen. Es handelt sich hierbei um ein zertifikatsbasiertes Fernstudium, welches ich neben meiner normalen Betrufstätigkeit absolviere.
+Im Jahr 2020 habe ich mich für ein Fernstudium an der Hochschule Trier entschieden, um den Master of Computer Science im Bereich Informatik zu erreichen. Es handelt sich hierbei um ein zertifikatsbasiertes Fernstudium, welches ich neben meiner normalen Berufstätigkeit absolviere.
 
 ## Lizenzierung
 
