@@ -99,8 +99,9 @@
 		<!-- Testing Dependencies -->
 		<!-- ==================== -->
 		<h2database.version>1.4.200</h2database.version> <!-- MPL 2.0 / EPL 1.0 (nur Verwendung) -->
-		<hamcrest-all.version>1.3</hamcrest-all.version> <!-- BSD 2 -->
-		<hamcrest-date.version>2.0.7</hamcrest-date.version> <!-- BSD 2 -->
+		<hamcrest-all.version>1.3</hamcrest-all.version> <!-- BSD 2 License -->
+		<hamcrest-date.version>2.0.7</hamcrest-date.version> <!-- BSD 2 License -->
+		<hamcrest-optional.version>2.0.0</hamcrest-optional.version> <!-- MIT License -->
 		<jacoco.core.version>0.8.7</jacoco.core.version> <!-- Eclipse Public License 2.0 (nur Verwendung) -->
 		<junit4.version>4.13.1</junit4.version> <!-- Eclipse Public License 1.0 (nur Verwendung) -->
 		<mockito-all.version>1.10.19</mockito-all.version> <!-- MIT License -->
@@ -274,6 +275,20 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+			<!-- Nützliche Erweiterung der hamcrest Bibiliothek mit Matchern für java.util.Optional -->
+			<!-- https://mvnrepository.com/artifact/com.github.npathai/hamcrest-optional -->
+			<dependency>
+				<groupId>com.github.npathai</groupId>
+				<artifactId>hamcrest-optional</artifactId>
+				<version>${hamcrest-optional.version}</version>
+				<scope>test</scope>
+				<exclusions>
+					<exclusion>
+						<groupId>org.hamcrest</groupId>
+						<artifactId>hamcrest-core</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 			<!-- JUnit 4.x Unterstützung -->
 			<dependency>
 				<groupId>junit</groupId>
@@ -343,6 +358,10 @@
 		<dependency>
 			<groupId>org.exparity</groupId>
 			<artifactId>hamcrest-date</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.npathai</groupId>
+			<artifactId>hamcrest-optional</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
