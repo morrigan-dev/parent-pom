@@ -99,6 +99,7 @@
 		<!-- ==================== -->
 		<!-- Testing Dependencies -->
 		<!-- ==================== -->
+		<awaitility.version>4.1.0</awaitility.version> <!-- Apache License -->
 		<h2database.version>1.4.200</h2database.version> <!-- MPL 2.0 / EPL 1.0 (nur Verwendung) -->
 		<hamcrest-all.version>1.3</hamcrest-all.version> <!-- BSD 2 License -->
 		<hamcrest-date.version>2.0.7</hamcrest-date.version> <!-- BSD 2 License -->
@@ -257,6 +258,13 @@
 			<!-- Bei allen anderen Dependencys ist der Scope in den benutzenden Modulen zu setzen! -->
 			<!-- Siehe auch: https://stackoverflow.com/questions/15221299/dependencymanagement-and-scope -->
 
+			<!-- Nützliche Bibliothek zum Testen von asynchronen Services -->
+			<dependency>
+				<groupId>org.awaitility</groupId>
+				<artifactId>awaitility</artifactId>
+				<version>${awaitility.version}</version>
+				<scope>test</scope>
+			</dependency>
 			<!-- Nützliche embedded Datenbank -->
 			<dependency>
 				<groupId>com.h2database</groupId>
@@ -343,6 +351,7 @@
 				<version>${mockito-all.version}</version>
 				<scope>test</scope>
 			</dependency>
+
 
 			<!-- ==================== -->
 			<!-- Logging Dependencies -->
