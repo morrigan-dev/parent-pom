@@ -1,14 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
+<parent>
 	<groupId>de.morrigan.dev.common</groupId>
-	<artifactId>parent-pom-build</artifactId>
+	<artifactId>parent-pom</artifactId>
 	<version>1.0.12-SNAPSHOT</version>
-	<packaging>pom</packaging>
+</parent>
 
-	<name>Parent-POM - build module</name>
+	<name>Parent-POM</name>
 	<description>Enthält globale maven Konfigurationen, die für alle Projekte gelten.</description>
+	<packaging>pom</packaging>
 
 	<developers>
 		<developer>
@@ -23,11 +26,6 @@
 			<timezone>GMT+1</timezone>
 		</developer>
 	</developers>
-
-	<modules>
-		<module>parent-pom</module>
-		<module>spring-parent-pom</module>
-	</modules>
 
 	<scm>
 		<developerConnection>scm:git:https://github.com/morrigan-dev/parent-pom.git</developerConnection>
@@ -64,7 +62,7 @@
 		<!-- Variablen für Plugin-Versionen -->
 		<artifactory-maven-plugin.version>3.2.3</artifactory-maven-plugin.version> <!-- Apache License -->
 		<jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version> <!-- EPL 2.0 -->
-		<lifecycle-mapping.version>1.0.0</lifecycle-mapping.version> <!-- EPL-2.0 (?) -->
+    <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version> <!-- EPL-2.0 (?) -->
 		<maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version> <!-- Apache License -->
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version> <!-- Apache License -->
 		<maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version> <!-- Apache License -->
@@ -764,7 +762,8 @@
 								<goal>aggregate</goal>
 							</goals>
 							<phase>site</phase>
-							<configuration></configuration>
+							<configuration>
+							</configuration>
 						</execution>
 					</executions>
 				</plugin>
